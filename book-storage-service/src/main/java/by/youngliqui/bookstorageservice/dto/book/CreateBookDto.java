@@ -1,4 +1,4 @@
-package by.youngliqui.bookstorageservice.dto;
+package by.youngliqui.bookstorageservice.dto.book;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UpdateBookDto {
+public class CreateBookDto {
 
     @NotBlank(message = "ISBN should not be empty")
     @Size(min = 13, max = 20, message = "The length of the ISBN must be from 13 to 20 characters.")
@@ -20,7 +20,7 @@ public class UpdateBookDto {
     @NotBlank(message = "Title should not be empty")
     private String title;
 
-    @NotBlank(message = "Title should not be empty")
+    @NotBlank(message = "Genre should not be empty")
     private String genreName;
 
     private String description;

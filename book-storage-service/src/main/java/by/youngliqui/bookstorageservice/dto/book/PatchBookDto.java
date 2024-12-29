@@ -1,4 +1,4 @@
-package by.youngliqui.bookstorageservice.dto;
+package by.youngliqui.bookstorageservice.dto.book;
 
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;

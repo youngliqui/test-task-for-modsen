@@ -1,6 +1,6 @@
 package by.youngliqui.bookstorageservice.controller.doc;
 
-import by.youngliqui.bookstorageservice.dto.*;
+import by.youngliqui.bookstorageservice.dto.book.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 public interface BookControllerDoc {
+
     @Operation(summary = "Получить список книг")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Успешно получены книги"),

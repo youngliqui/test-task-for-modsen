@@ -1,9 +1,9 @@
 package by.youngliqui.bookstorageservice.mapper;
 
-import by.youngliqui.bookstorageservice.dto.CreateBookDto;
-import by.youngliqui.bookstorageservice.dto.InfoBookDto;
-import by.youngliqui.bookstorageservice.dto.PatchBookDto;
-import by.youngliqui.bookstorageservice.dto.UpdateBookDto;
+import by.youngliqui.bookstorageservice.dto.book.CreateBookDto;
+import by.youngliqui.bookstorageservice.dto.book.InfoBookDto;
+import by.youngliqui.bookstorageservice.dto.book.PatchBookDto;
+import by.youngliqui.bookstorageservice.dto.book.UpdateBookDto;
 import by.youngliqui.bookstorageservice.entity.Book;
 import by.youngliqui.bookstorageservice.entity.Genre;
 import org.mapstruct.*;
