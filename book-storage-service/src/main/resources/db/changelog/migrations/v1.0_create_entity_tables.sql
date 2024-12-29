@@ -39,7 +39,5 @@ CREATE TABLE books
     title       VARCHAR(255) NOT NULL,
     genre_id    BIGINT       NOT NULL,
     description TEXT,
-    author_id   BIGINT       NOT NULL,
-    FOREIGN KEY (genre_id) REFERENCES genres (id),
-    FOREIGN KEY (author_id) REFERENCES users (id)
+    FOREIGN KEY (genre_id) REFERENCES genres (id)
 );

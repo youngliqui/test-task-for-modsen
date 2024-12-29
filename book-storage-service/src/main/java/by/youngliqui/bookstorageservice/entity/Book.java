@@ -9,6 +9,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "books")
 public class Book {
+
     @Id
     @SequenceGenerator(name = "booksIdSeqGen", sequenceName = "books_id_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "booksIdSeqGen")
@@ -25,7 +26,5 @@ public class Book {
 
     private String description;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "author_id", nullable = false)
-    private User author;
+    private String author;
 }
