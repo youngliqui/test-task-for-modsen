@@ -20,7 +20,7 @@ public class UpdateBookDto {
     @NotBlank(message = "Title should not be empty")
     private String title;
 
-    @NotBlank(message = "Title should not be empty")
+    @NotBlank(message = "Genre name should not be empty")
     private String genreName;
 
     private String description;

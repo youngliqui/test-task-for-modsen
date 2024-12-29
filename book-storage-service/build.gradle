@@ -48,11 +48,6 @@ dependencies {
     runtimeOnly 'org.postgresql:postgresql'
 
     /**
-     * Docker
-     */
-    developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
-
-    /**
      * Tests
      */
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
