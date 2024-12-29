@@ -17,7 +17,7 @@ public class PatchBookDto {
 
     private String title;
 
-    private String genre;
+    private String genreName;
 
     private String description;
 

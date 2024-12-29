@@ -1,9 +1,6 @@
 package by.youngliqui.bookstorageservice.controller.doc;
 
-import by.youngliqui.bookstorageservice.dto.CreateBookDto;
-import by.youngliqui.bookstorageservice.dto.InfoBookDto;
-import by.youngliqui.bookstorageservice.dto.PatchBookDto;
-import by.youngliqui.bookstorageservice.dto.UpdateBookDto;
+import by.youngliqui.bookstorageservice.dto.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -20,7 +17,7 @@ public interface BookControllerDoc {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Успешно получены книги"),
             @ApiResponse(responseCode = "400", description = "Некорректные параметры запроса",
-                    content = @Content(shema = @Schema(implementation = ExceptionResponse.class)))
+                    content = @Content(schema = @Schema(implementation = ExceptionResponse.class)))
     })
     @GetMapping
     Page<InfoBookDto> getAllBooks(

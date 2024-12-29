@@ -5,21 +5,17 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class InfoBookDto {
+public class ExceptionResponse {
 
-    private Long id;
+    private String message;
 
-    private String ISBN;
+    private int status;
 
-    private String title;
-
-    private String genreName;
-
-    private String description;
-
-    private String author;
+    private LocalDateTime timestamp;
 }

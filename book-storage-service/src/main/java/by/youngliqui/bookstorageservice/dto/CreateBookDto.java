@@ -21,7 +21,7 @@ public class CreateBookDto {
     private String title;
 
     @NotBlank(message = "Genre should not be empty")
-    private String genre;
+    private String genreName;
 
     private String description;
 
