@@ -1,6 +1,8 @@
 package by.youngliqui.bookstorageservice.exception;
 
-public class BookAlreadyExistsException extends RuntimeException {
+import by.youngliqui.bookstorageservice.exception.abstr.ResourceAlreadyExistsException;
+
+public class BookAlreadyExistsException extends ResourceAlreadyExistsException {
     public BookAlreadyExistsException(String message) {
         super(message);
     }

@@ -1,6 +1,8 @@
 package by.youngliqui.bookstorageservice.exception;
 
-public class GenreNotFoundException extends RuntimeException {
+import by.youngliqui.bookstorageservice.exception.abstr.ResourceNotFoundException;
+
+public class GenreNotFoundException extends ResourceNotFoundException {
     public GenreNotFoundException(String message) {
         super(message);
     }

@@ -1,6 +1,8 @@
 package by.youngliqui.bookstorageservice.exception;
 
-public class BookNotFoundException extends RuntimeException {
+import by.youngliqui.bookstorageservice.exception.abstr.ResourceNotFoundException;
+
+public class BookNotFoundException extends ResourceNotFoundException {
     public BookNotFoundException(String message) {
         super(message);
     }

@@ -10,10 +10,12 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.HttpStatus.NO_CONTENT;
 
 public interface GenreControllerDoc {
 
@@ -28,10 +30,12 @@ public interface GenreControllerDoc {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Успешно создан жанр"),
             @ApiResponse(responseCode = "400", description = "Некорректные данные для создания жанра",
+                    content = @Content(schema = @Schema(implementation = ExceptionResponse.class))),
+            @ApiResponse(responseCode = "409", description = "Жанр уже существует",
                     content = @Content(schema = @Schema(implementation = ExceptionResponse.class)))
     })
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(CREATED)
     InfoGenreDto createGenre(
             @Parameter(description = "Данные для создания жанра")
             @RequestBody @Valid CreateGenreDto createGenreDto
@@ -44,7 +48,7 @@ public interface GenreControllerDoc {
                     content = @Content(schema = @Schema(implementation = ExceptionResponse.class)))
     })
     @DeleteMapping("/{genreId}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ResponseStatus(NO_CONTENT)
     void deleteGenreById(
             @Parameter(description = "ID жанра") @PathVariable Long genreId
     );

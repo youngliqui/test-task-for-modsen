@@ -9,8 +9,10 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.HttpStatus.NO_CONTENT;
 
 public interface BookControllerDoc {
 
@@ -58,10 +60,12 @@ public interface BookControllerDoc {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Успешно создана книга"),
             @ApiResponse(responseCode = "400", description = "Некорректные данные для создания книги",
+                    content = @Content(schema = @Schema(implementation = ExceptionResponse.class))),
+            @ApiResponse(responseCode = "409", description = "Книга уже существует",
                     content = @Content(schema = @Schema(implementation = ExceptionResponse.class)))
     })
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(CREATED)
     InfoBookDto createBook(
             @Parameter(description = "Данные для создания книги")
             @RequestBody @Valid CreateBookDto createBookDto
@@ -75,7 +79,7 @@ public interface BookControllerDoc {
                     content = @Content(schema = @Schema(implementation = ExceptionResponse.class)))
     })
     @DeleteMapping("/{bookId}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ResponseStatus(NO_CONTENT)
     void deleteBookById(
             @Parameter(description = "ID книги") @PathVariable Long bookId
     );
@@ -87,6 +91,8 @@ public interface BookControllerDoc {
             @ApiResponse(responseCode = "404", description = "Книга не найдена",
                     content = @Content(schema = @Schema(implementation = ExceptionResponse.class))),
             @ApiResponse(responseCode = "400", description = "Некорректные данные для обновления книги",
+                    content = @Content(schema = @Schema(implementation = ExceptionResponse.class))),
+            @ApiResponse(responseCode = "409", description = "Книга уже существует",
                     content = @Content(schema = @Schema(implementation = ExceptionResponse.class)))
     })
     @PutMapping("/{bookId}")
@@ -103,6 +109,8 @@ public interface BookControllerDoc {
             @ApiResponse(responseCode = "404", description = "Книга не найдена",
                     content = @Content(schema = @Schema(implementation = ExceptionResponse.class))),
             @ApiResponse(responseCode = "400", description = "Некорректные данные для частичного обновления книги",
+                    content = @Content(schema = @Schema(implementation = ExceptionResponse.class))),
+            @ApiResponse(responseCode = "409", description = "Книга уже существует",
                     content = @Content(schema = @Schema(implementation = ExceptionResponse.class)))
     })
     @PatchMapping("/{bookId}")
