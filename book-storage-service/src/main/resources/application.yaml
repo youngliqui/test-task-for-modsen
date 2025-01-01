@@ -1,3 +1,5 @@
+server:
+  port: 8081
 spring:
   application:
     name: book-storage-service
@@ -5,9 +7,20 @@ spring:
     username: postgres
     password: postgres
     url: jdbc:postgresql://localhost:5444/book_storage_db
+    driver-class-name: org.postgresql.Driver
+  liquibase:
+    enabled: true
+    change-log: db/changelog/db.changelog-master.yaml
   jpa:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
-  server:
-    port: 8081
+        format_sql: true
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+springdoc:
+  show-actuator: false
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html

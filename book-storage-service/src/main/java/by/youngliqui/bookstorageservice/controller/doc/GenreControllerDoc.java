@@ -38,7 +38,7 @@ public interface GenreControllerDoc {
     @ResponseStatus(CREATED)
     InfoGenreDto createGenre(
             @Parameter(description = "Данные для создания жанра")
-            @RequestBody @Valid CreateGenreDto createGenreDto
+            @Valid @RequestBody CreateGenreDto createGenreDto
     );
 
     @Operation(summary = "Удаление жанра по ID")

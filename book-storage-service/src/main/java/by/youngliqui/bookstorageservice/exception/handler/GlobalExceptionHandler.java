@@ -51,7 +51,7 @@ public class GlobalExceptionHandler {
     @ResponseStatus(INTERNAL_SERVER_ERROR)
     @ExceptionHandler(Exception.class)
     public ExceptionResponse handleGenericException(Exception e) {
-        String exceptionMessage = "An unexpected error occurred";
+        String exceptionMessage = "An unexpected error occurred: " + e.getMessage();
         log.error(exceptionMessage, e);
 
         return buildExceptionResponse(INTERNAL_SERVER_ERROR, exceptionMessage);

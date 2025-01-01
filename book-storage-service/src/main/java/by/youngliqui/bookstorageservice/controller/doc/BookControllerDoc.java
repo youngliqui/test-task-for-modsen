@@ -68,7 +68,7 @@ public interface BookControllerDoc {
     @ResponseStatus(CREATED)
     InfoBookDto createBook(
             @Parameter(description = "Данные для создания книги")
-            @RequestBody @Valid CreateBookDto createBookDto
+            @Valid @RequestBody CreateBookDto createBookDto
     );
 
 
@@ -99,7 +99,7 @@ public interface BookControllerDoc {
     InfoBookDto fullUpdate(
             @Parameter(description = "ID книги") @PathVariable Long bookId,
             @Parameter(description = "Данные для полного обновления книги")
-            @RequestBody @Valid UpdateBookDto updateBookDto
+            @Valid @RequestBody UpdateBookDto updateBookDto
     );
 
 
@@ -117,6 +117,6 @@ public interface BookControllerDoc {
     InfoBookDto patchUpdateBookDto(
             @Parameter(description = "ID книги") @PathVariable Long bookId,
             @Parameter(description = "Данные для частичного обновления книги")
-            @RequestBody @Valid PatchBookDto updateBookDto
+            @Valid @RequestBody PatchBookDto updateBookDto
     );
 }
