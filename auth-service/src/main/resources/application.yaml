@@ -1,3 +1,33 @@
+server:
+  port: 8082
 spring:
   application:
     name: auth-service
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5445/users_db
+    username: postgres
+    password: postgres
+  liquibase:
+    enabled: true
+    change-log: db/changelog/db.changelog-master.yaml
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+springdoc:
+  show-actuator: false
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+
+security:
+  jwt:
+    secret-key:
+      G4FEVk7763crEaNKV0GynmfugR3Gc1c6DumD15Sfi1AqX3WLRz0uGpEK28ZtDnhc
+    expiration-time:
+      800000
