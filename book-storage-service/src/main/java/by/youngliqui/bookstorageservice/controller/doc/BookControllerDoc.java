@@ -1,6 +1,10 @@
 package by.youngliqui.bookstorageservice.controller.doc;
 
-import by.youngliqui.bookstorageservice.dto.book.*;
+import by.youngliqui.bookstorageservice.dto.ExceptionResponse;
+import by.youngliqui.bookstorageservice.dto.book.CreateBookDto;
+import by.youngliqui.bookstorageservice.dto.book.InfoBookDto;
+import by.youngliqui.bookstorageservice.dto.book.PatchBookDto;
+import by.youngliqui.bookstorageservice.dto.book.UpdateBookDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -26,7 +30,7 @@ public interface BookControllerDoc {
     Page<InfoBookDto> getAllBooks(
             @Parameter(description = "Номер страницы", example = "0")
             @RequestParam(defaultValue = "0", required = false, value = "page") Integer page,
-            @Parameter(description = "Номер страницы", example = "0")
+            @Parameter(description = "Размер страницы", example = "10")
             @RequestParam(defaultValue = "10", required = false, value = "size") Integer size
     );
 

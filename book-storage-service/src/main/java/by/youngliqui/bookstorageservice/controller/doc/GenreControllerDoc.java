@@ -1,6 +1,6 @@
 package by.youngliqui.bookstorageservice.controller.doc;
 
-import by.youngliqui.bookstorageservice.dto.book.ExceptionResponse;
+import by.youngliqui.bookstorageservice.dto.ExceptionResponse;
 import by.youngliqui.bookstorageservice.dto.genre.CreateGenreDto;
 import by.youngliqui.bookstorageservice.dto.genre.InfoGenreDto;
 import io.swagger.v3.oas.annotations.Operation;

@@ -1,6 +1,6 @@
 package by.youngliqui.bookstorageservice.exception.handler;
 
-import by.youngliqui.bookstorageservice.dto.book.ExceptionResponse;
+import by.youngliqui.bookstorageservice.dto.ExceptionResponse;
 import by.youngliqui.bookstorageservice.exception.abstr.ResourceAlreadyExistsException;
 import by.youngliqui.bookstorageservice.exception.abstr.ResourceNotFoundException;
 import lombok.extern.slf4j.Slf4j;

@@ -1,4 +1,4 @@
-package by.youngliqui.bookstorageservice.dto.book;
+package by.youngliqui.bookstorageservice.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
