@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UpdateUserDto {
-    @Size(min = 5, max = 45, message = "The nickname must contain from 5 to 45 characters")
+    @Size(min = 3, max = 45, message = "The nickname must contain from 3 to 45 characters")
     @NotBlank(message = "The nickname cannot be empty")
     private String username;
 }

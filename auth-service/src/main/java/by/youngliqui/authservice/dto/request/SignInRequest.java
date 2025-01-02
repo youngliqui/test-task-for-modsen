@@ -12,11 +12,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SignInRequest {
-    @Size(min = 5, max = 45, message = "The nickname must contain from 5 to 45 characters")
+    @Size(min = 3, max = 45, message = "The nickname must contain from 3 to 45 characters")
     @NotBlank(message = "The nickname cannot be empty")
     private String username;
 
-    @Size(min = 5, max = 64, message = "The password must be between 5 and 64 characters long")
+    @Size(min = 3, max = 64, message = "The password must be between 3 and 64 characters long")
     @NotBlank(message = "The password cannot be empty")
     private String password;
 }

@@ -22,6 +22,10 @@ public class UserManagementServiceImpl implements UserManagementService {
 
     @Override
     public InfoUserDto updateUser(Long userId, UpdateUserDto updateUserDto) {
+
+        if (userRepository.existsByUsername(updateUserDto.getUsername())) {
+            throw new UsernameAlreadyExistsException("Username = " + updateUserDto.getUsername() + " already exists");
+        }
         User user = findUserById(userId);
         userMapper.updateUser(user, updateUserDto);
 

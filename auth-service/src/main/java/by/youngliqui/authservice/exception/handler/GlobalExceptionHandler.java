@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.AccountStatusException;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -72,44 +73,52 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(BadCredentialsException.class)
     @ResponseStatus(UNAUTHORIZED)
-    public ExceptionResponse handleBadCredentialsException(BadCredentialsException ex) {
-        log.warn("Bad credentials: {}", ex.getMessage());
+    public ExceptionResponse handleBadCredentialsException(BadCredentialsException e) {
+        log.warn("Bad credentials: {}", e.getMessage());
         return buildExceptionResponse(UNAUTHORIZED, "Invalid credentials");
     }
 
     @ExceptionHandler(ExpiredJwtException.class)
     @ResponseStatus(UNAUTHORIZED)
-    public ExceptionResponse handleExpiredJwt(ExpiredJwtException ex) {
-        log.warn("JWT expired: {}", ex.getMessage());
+    public ExceptionResponse handleExpiredJwt(ExpiredJwtException e) {
+        log.warn("JWT expired: {}", e.getMessage());
         return buildExceptionResponse(UNAUTHORIZED, "JWT token has expired");
     }
 
     @ExceptionHandler(AccountStatusException.class)
     @ResponseStatus(FORBIDDEN)
-    public ExceptionResponse handleAccountStatus(AccountStatusException ex) {
-        log.warn("Account status issue: {}", ex.getMessage());
-        return buildExceptionResponse(FORBIDDEN, ex.getMessage());
+    public ExceptionResponse handleAccountStatus(AccountStatusException e) {
+        log.warn("Account status issue: {}", e.getMessage());
+        return buildExceptionResponse(FORBIDDEN, e.getMessage());
     }
 
     @ExceptionHandler(AccessDeniedException.class)
     @ResponseStatus(FORBIDDEN)
-    public ExceptionResponse handleForbiddenExceptions(AccessDeniedException ex) {
-        log.warn("Access denied: {}", ex.getMessage());
+    public ExceptionResponse handleForbiddenExceptions(AccessDeniedException e) {
+        log.warn("Access denied: {}", e.getMessage());
         return buildExceptionResponse(FORBIDDEN, "Access denied");
     }
 
     @ExceptionHandler(SignatureException.class)
     @ResponseStatus(UNAUTHORIZED)
-    public ExceptionResponse handleSignatureException(SignatureException ex) {
-        log.warn("Invalid JWT signature: {}", ex.getMessage());
+    public ExceptionResponse handleSignatureException(SignatureException e) {
+        log.warn("Invalid JWT signature: {}", e.getMessage());
         return buildExceptionResponse(UNAUTHORIZED, "Invalid JWT signature");
     }
 
     @ExceptionHandler(MalformedJwtException.class)
     @ResponseStatus(BAD_REQUEST)
-    public ExceptionResponse handleMalformedJwt(MalformedJwtException ex) {
-        log.warn("Malformed JWT: {}", ex.getMessage());
+    public ExceptionResponse handleMalformedJwt(MalformedJwtException e) {
+        log.warn("Malformed JWT: {}", e.getMessage());
         return buildExceptionResponse(BAD_REQUEST, "JWT token is malformed");
+    }
+
+    @ExceptionHandler(InternalAuthenticationServiceException.class)
+    @ResponseStatus(UNAUTHORIZED)
+    public ExceptionResponse handleInternalAuthError(InternalAuthenticationServiceException e) {
+        String ErrorMessage = "Authentication error: " + e.getMessage();
+        log.warn(ErrorMessage);
+        return buildExceptionResponse(UNAUTHORIZED, ErrorMessage);
     }
 
 
