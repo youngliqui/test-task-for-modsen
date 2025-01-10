@@ -1,22 +1,18 @@
 package by.youngliqui.booktrackerservice.dto;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
-
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ExceptionResponse {
+public class CreateBookStatusDto {
 
-    private String message;
-
-    private int status;
-
-    private LocalDateTime timestamp;
+    @NotBlank(message = "BookID should not be empty")
+    private Long bookId;
 
 }

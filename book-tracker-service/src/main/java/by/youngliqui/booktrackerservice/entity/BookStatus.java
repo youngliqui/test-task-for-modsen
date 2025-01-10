@@ -17,6 +17,7 @@ public class BookStatus {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "bookStatusIdSeqGen")
     private Long id;
 
+    @Column(unique = true)
     private Long bookId;
 
     @Enumerated(EnumType.STRING)
@@ -25,4 +26,5 @@ public class BookStatus {
     private LocalDateTime borrowedAt;
 
     private LocalDateTime returnBy;
+
 }
