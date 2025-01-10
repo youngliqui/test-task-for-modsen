@@ -6,6 +6,7 @@ import by.youngliqui.booktrackerservice.dto.CreateBookStatusDto;
 import by.youngliqui.booktrackerservice.dto.InfoBookStatusDto;
 import by.youngliqui.booktrackerservice.entity.BookStatus;
 import by.youngliqui.booktrackerservice.entity.Status;
+import by.youngliqui.booktrackerservice.exception.BookStatusAlreadyExistsException;
 import by.youngliqui.booktrackerservice.exception.BookStatusConflictException;
 import by.youngliqui.booktrackerservice.exception.BookStatusNotFoundException;
 import by.youngliqui.booktrackerservice.mapper.BookStatusMapper;
@@ -75,6 +76,12 @@ public class BookStatusServiceImpl implements BookStatusService {
 
     @Override
     public InfoBookStatusDto createBookStatus(CreateBookStatusDto createBookStatusDto) {
+
+        if (bookStatusRepository.existsByBookId(createBookStatusDto.getBookId())) {
+            throw new BookStatusAlreadyExistsException(
+                    "BookStatus with bookId = " + createBookStatusDto.getBookId() + " already exists"
+            );
+        }
         BookStatus newBookStatus = bookStatusMapper.createBookStatusDtoToBookStatus(createBookStatusDto);
 
         return bookStatusMapper.bookStatusToInfoBookStatusDto(

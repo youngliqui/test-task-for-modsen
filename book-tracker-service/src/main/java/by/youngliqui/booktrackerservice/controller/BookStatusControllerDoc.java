@@ -50,6 +50,8 @@ public interface BookStatusControllerDoc {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Книга успешно взята"),
             @ApiResponse(responseCode = "404", description = "Книга не найдена",
+                    content = @Content(schema = @Schema(implementation = ExceptionResponse.class))),
+            @ApiResponse(responseCode = "409", description = "Книга уже была взята",
                     content = @Content(schema = @Schema(implementation = ExceptionResponse.class)))
     })
     @PatchMapping("/{bookId}/status/available")
@@ -63,6 +65,8 @@ public interface BookStatusControllerDoc {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Книга успешно возвращена"),
             @ApiResponse(responseCode = "404", description = "Книга не найдена",
+                    content = @Content(schema = @Schema(implementation = ExceptionResponse.class))),
+            @ApiResponse(responseCode = "409", description = "Книга уже была возвращена",
                     content = @Content(schema = @Schema(implementation = ExceptionResponse.class)))
     })
     @PatchMapping("/{bookId}/status/borrowed")

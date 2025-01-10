@@ -12,4 +12,6 @@ public interface BookStatusRepository extends JpaRepository<BookStatus, Long> {
     Page<BookStatus> findByStatus(Status status, Pageable pageable);
 
     Optional<BookStatus> findByBookId(Long bookId);
+
+    boolean existsByBookId(Long bookId);
 }
