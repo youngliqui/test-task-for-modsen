@@ -15,6 +15,20 @@ import static org.springframework.http.HttpStatus.CREATED;
 
 public interface BookStatusControllerDoc {
 
+    @Operation(summary = "Получение списка всех записей книг")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Успешно получены записи книги"),
+            @ApiResponse(responseCode = "400", description = "Некорректные параметры запроса",
+                    content = @Content(schema = @Schema(implementation = ExceptionResponse.class)))
+    })
+    @GetMapping
+    Page<InfoBookStatusDto> getAllStatuses(
+            @Parameter(description = "Номер страницы", example = "0")
+            @RequestParam(defaultValue = "0", required = false, value = "page") Integer page,
+            @Parameter(description = "Размер страницы", example = "10")
+            @RequestParam(defaultValue = "10", required = false, value = "size") Integer size
+    );
+
     @Operation(summary = "Получение списка свободных книг")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Успешно получены свободные книги"),
@@ -54,7 +68,7 @@ public interface BookStatusControllerDoc {
             @ApiResponse(responseCode = "409", description = "Книга уже была взята",
                     content = @Content(schema = @Schema(implementation = ExceptionResponse.class)))
     })
-    @PatchMapping("/{bookId}/status/available")
+    @PatchMapping("/{bookId}/status/borrowed")
     BorrowedBookStatusDto takeBook(
             @Parameter(description = "ID книги")
             @PathVariable Long bookId
@@ -69,7 +83,7 @@ public interface BookStatusControllerDoc {
             @ApiResponse(responseCode = "409", description = "Книга уже была возвращена",
                     content = @Content(schema = @Schema(implementation = ExceptionResponse.class)))
     })
-    @PatchMapping("/{bookId}/status/borrowed")
+    @PatchMapping("/{bookId}/status/available")
     AvailableBookStatusDto returnBook(
             @Parameter(description = "ID книги")
             @PathVariable Long bookId

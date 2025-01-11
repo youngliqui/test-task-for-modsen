@@ -17,4 +17,5 @@ public interface BookStatusService {
 
     InfoBookStatusDto createBookStatus(CreateBookStatusDto createBookStatusDto);
 
+    Page<InfoBookStatusDto> getAllStatuses(Pageable pageable);
 }

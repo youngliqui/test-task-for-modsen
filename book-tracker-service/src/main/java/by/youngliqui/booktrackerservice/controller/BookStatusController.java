@@ -21,6 +21,12 @@ public class BookStatusController implements BookStatusControllerDoc {
 
 
     @Override
+    public Page<InfoBookStatusDto> getAllStatuses(Integer page, Integer size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return bookStatusService.getAllStatuses(pageable);
+    }
+
+    @Override
     public Page<AvailableBookStatusDto> getAvailableBooks(Integer page, Integer size) {
         Pageable pageable = PageRequest.of(page, size);
         return bookStatusService.getAvailableBooks(pageable);

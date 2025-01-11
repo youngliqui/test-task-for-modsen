@@ -89,6 +89,12 @@ public class BookStatusServiceImpl implements BookStatusService {
         );
     }
 
+    @Override
+    public Page<InfoBookStatusDto> getAllStatuses(Pageable pageable) {
+        return bookStatusRepository.findAll(pageable)
+                .map(bookStatusMapper::bookStatusToInfoBookStatusDto);
+    }
+
 
     private BookStatus findBookStatusByBookId(Long bookId) {
         return bookStatusRepository.findByBookId(bookId)
