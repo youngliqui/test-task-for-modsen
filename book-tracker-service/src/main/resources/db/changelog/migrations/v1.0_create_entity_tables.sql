@@ -13,5 +13,6 @@ CREATE TABLE book_status
     book_id     BIGINT      NOT NULL UNIQUE,
     status      VARCHAR(20) NOT NULL,
     borrowed_at TIMESTAMP NULL,
-    return_by   TIMESTAMP NULL
+    return_by   TIMESTAMP NULL,
+    is_deleted  BOOLEAN            DEFAULT FALSE
 );

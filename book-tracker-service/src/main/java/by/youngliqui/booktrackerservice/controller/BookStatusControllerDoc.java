@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.HttpStatus.NO_CONTENT;
 
 public interface BookStatusControllerDoc {
 
@@ -85,6 +86,20 @@ public interface BookStatusControllerDoc {
     })
     @PatchMapping("/{bookId}/status/available")
     AvailableBookStatusDto returnBook(
+            @Parameter(description = "ID книги")
+            @PathVariable Long bookId
+    );
+
+
+    @Operation(summary = "Удаление записи по ID книги")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Успешно удалена запись книги"),
+            @ApiResponse(responseCode = "404", description = "Книга не найдена",
+                    content = @Content(schema = @Schema(implementation = ExceptionResponse.class)))
+    })
+    @DeleteMapping("/{bookId}")
+    @ResponseStatus(NO_CONTENT)
+    void deleteBookStatusByBookId(
             @Parameter(description = "ID книги")
             @PathVariable Long bookId
     );

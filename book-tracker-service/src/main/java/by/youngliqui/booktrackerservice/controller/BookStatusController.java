@@ -46,4 +46,9 @@ public class BookStatusController implements BookStatusControllerDoc {
     public AvailableBookStatusDto returnBook(Long bookId) {
         return bookStatusService.setBookStatusAvailable(bookId);
     }
+
+    @Override
+    public void deleteBookStatusByBookId(Long bookId) {
+        bookStatusService.deleteByBookId(bookId);
+    }
 }

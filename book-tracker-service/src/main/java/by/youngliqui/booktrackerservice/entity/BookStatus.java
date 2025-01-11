@@ -3,6 +3,8 @@ package by.youngliqui.booktrackerservice.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
 
 import java.time.LocalDateTime;
 
@@ -10,6 +12,8 @@ import java.time.LocalDateTime;
 @Setter
 @Entity
 @Table(name = "book_status")
+@SQLDelete(sql = "UPDATE book_status SET is_deleted = true WHERE id = ?")
+@SQLRestriction("is_deleted = false")
 public class BookStatus {
 
     @Id
@@ -26,5 +30,7 @@ public class BookStatus {
     private LocalDateTime borrowedAt;
 
     private LocalDateTime returnBy;
+
+    private boolean isDeleted = false;
 
 }

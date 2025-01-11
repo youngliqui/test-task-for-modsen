@@ -95,11 +95,16 @@ public class BookStatusServiceImpl implements BookStatusService {
                 .map(bookStatusMapper::bookStatusToInfoBookStatusDto);
     }
 
+    @Override
+    public void deleteByBookId(Long bookId) {
+        BookStatus deletedBookStatus = findBookStatusByBookId(bookId);
+        bookStatusRepository.delete(deletedBookStatus);
+    }
+
 
     private BookStatus findBookStatusByBookId(Long bookId) {
         return bookStatusRepository.findByBookId(bookId)
                 .orElseThrow(() ->
                         new BookStatusNotFoundException("BookStatus with bookId = " + bookId + " was not found"));
     }
-
 }
