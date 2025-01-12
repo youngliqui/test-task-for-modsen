@@ -1,9 +1,10 @@
 package by.youngliqui.booktrackerservice.controller;
 
-import by.youngliqui.booktrackerservice.dto.AvailableBookStatusDto;
-import by.youngliqui.booktrackerservice.dto.BorrowedBookStatusDto;
-import by.youngliqui.booktrackerservice.dto.CreateBookStatusDto;
-import by.youngliqui.booktrackerservice.dto.InfoBookStatusDto;
+import by.youngliqui.booktrackerservice.controller.doc.BookStatusControllerDoc;
+import by.youngliqui.booktrackerservice.dto.bookstatus.AvailableBookStatusDto;
+import by.youngliqui.booktrackerservice.dto.bookstatus.BorrowedBookStatusDto;
+import by.youngliqui.booktrackerservice.dto.bookstatus.CreateBookStatusDto;
+import by.youngliqui.booktrackerservice.dto.bookstatus.InfoBookStatusDto;
 import by.youngliqui.booktrackerservice.service.BookStatusService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

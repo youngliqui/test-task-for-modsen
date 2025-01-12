@@ -1,9 +1,9 @@
 package by.youngliqui.booktrackerservice.service;
 
-import by.youngliqui.booktrackerservice.dto.AvailableBookStatusDto;
-import by.youngliqui.booktrackerservice.dto.BorrowedBookStatusDto;
-import by.youngliqui.booktrackerservice.dto.CreateBookStatusDto;
-import by.youngliqui.booktrackerservice.dto.InfoBookStatusDto;
+import by.youngliqui.booktrackerservice.dto.bookstatus.AvailableBookStatusDto;
+import by.youngliqui.booktrackerservice.dto.bookstatus.BorrowedBookStatusDto;
+import by.youngliqui.booktrackerservice.dto.bookstatus.CreateBookStatusDto;
+import by.youngliqui.booktrackerservice.dto.bookstatus.InfoBookStatusDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

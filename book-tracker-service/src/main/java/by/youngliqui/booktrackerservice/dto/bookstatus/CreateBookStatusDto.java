@@ -1,5 +1,6 @@
-package by.youngliqui.booktrackerservice.dto;
+package by.youngliqui.booktrackerservice.dto.bookstatus;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,8 +10,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AvailableBookStatusDto {
+public class CreateBookStatusDto {
 
+    @NotBlank(message = "BookID should not be empty")
     private Long bookId;
 
 }

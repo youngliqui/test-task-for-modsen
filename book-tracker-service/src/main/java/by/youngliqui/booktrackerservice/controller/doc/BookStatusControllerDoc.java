@@ -1,6 +1,10 @@
-package by.youngliqui.booktrackerservice.controller;
+package by.youngliqui.booktrackerservice.controller.doc;
 
-import by.youngliqui.booktrackerservice.dto.*;
+import by.youngliqui.booktrackerservice.dto.bookstatus.AvailableBookStatusDto;
+import by.youngliqui.booktrackerservice.dto.bookstatus.BorrowedBookStatusDto;
+import by.youngliqui.booktrackerservice.dto.bookstatus.CreateBookStatusDto;
+import by.youngliqui.booktrackerservice.dto.bookstatus.InfoBookStatusDto;
+import by.youngliqui.booktrackerservice.dto.exception.ExceptionResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;

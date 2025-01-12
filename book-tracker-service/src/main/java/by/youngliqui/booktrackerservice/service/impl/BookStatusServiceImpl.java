@@ -1,9 +1,9 @@
-package by.youngliqui.booktrackerservice.service;
+package by.youngliqui.booktrackerservice.service.impl;
 
-import by.youngliqui.booktrackerservice.dto.AvailableBookStatusDto;
-import by.youngliqui.booktrackerservice.dto.BorrowedBookStatusDto;
-import by.youngliqui.booktrackerservice.dto.CreateBookStatusDto;
-import by.youngliqui.booktrackerservice.dto.InfoBookStatusDto;
+import by.youngliqui.booktrackerservice.dto.bookstatus.AvailableBookStatusDto;
+import by.youngliqui.booktrackerservice.dto.bookstatus.BorrowedBookStatusDto;
+import by.youngliqui.booktrackerservice.dto.bookstatus.CreateBookStatusDto;
+import by.youngliqui.booktrackerservice.dto.bookstatus.InfoBookStatusDto;
 import by.youngliqui.booktrackerservice.entity.BookStatus;
 import by.youngliqui.booktrackerservice.entity.Status;
 import by.youngliqui.booktrackerservice.exception.BookStatusAlreadyExistsException;
@@ -11,6 +11,7 @@ import by.youngliqui.booktrackerservice.exception.BookStatusConflictException;
 import by.youngliqui.booktrackerservice.exception.BookStatusNotFoundException;
 import by.youngliqui.booktrackerservice.mapper.BookStatusMapper;
 import by.youngliqui.booktrackerservice.repository.BookStatusRepository;
+import by.youngliqui.booktrackerservice.service.BookStatusService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;

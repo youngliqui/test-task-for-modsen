@@ -1,4 +1,4 @@
-package by.youngliqui.booktrackerservice.dto;
+package by.youngliqui.booktrackerservice.dto.bookstatus;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;

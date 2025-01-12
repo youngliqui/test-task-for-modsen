@@ -1,4 +1,4 @@
-package by.youngliqui.booktrackerservice.dto;
+package by.youngliqui.booktrackerservice.dto.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

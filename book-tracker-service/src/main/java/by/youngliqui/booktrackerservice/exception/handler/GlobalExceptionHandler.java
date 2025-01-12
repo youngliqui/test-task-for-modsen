@@ -1,6 +1,6 @@
 package by.youngliqui.booktrackerservice.exception.handler;
 
-import by.youngliqui.booktrackerservice.dto.ExceptionResponse;
+import by.youngliqui.booktrackerservice.dto.exception.ExceptionResponse;
 import by.youngliqui.booktrackerservice.exception.abstr.ResourceConflictException;
 import by.youngliqui.booktrackerservice.exception.abstr.ResourceNotFoundException;
 import lombok.extern.slf4j.Slf4j;

@@ -1,9 +1,9 @@
 package by.youngliqui.booktrackerservice.mapper;
 
-import by.youngliqui.booktrackerservice.dto.AvailableBookStatusDto;
-import by.youngliqui.booktrackerservice.dto.BorrowedBookStatusDto;
-import by.youngliqui.booktrackerservice.dto.CreateBookStatusDto;
-import by.youngliqui.booktrackerservice.dto.InfoBookStatusDto;
+import by.youngliqui.booktrackerservice.dto.bookstatus.AvailableBookStatusDto;
+import by.youngliqui.booktrackerservice.dto.bookstatus.BorrowedBookStatusDto;
+import by.youngliqui.booktrackerservice.dto.bookstatus.CreateBookStatusDto;
+import by.youngliqui.booktrackerservice.dto.bookstatus.InfoBookStatusDto;
 import by.youngliqui.booktrackerservice.entity.BookStatus;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
