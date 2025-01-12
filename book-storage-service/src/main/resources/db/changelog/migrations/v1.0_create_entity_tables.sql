@@ -13,20 +13,6 @@ CREATE TABLE genres
     name VARCHAR(255) NOT NULL UNIQUE
 );
 
---comment create users entity
-CREATE SEQUENCE users_id_seq
-    START WITH 1
-    INCREMENT BY 1;
-
-CREATE TABLE users
-(
-    id       BIGINT PRIMARY KEY DEFAULT nextval('users_id_seq'),
-    username VARCHAR(50)  NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
-    role     VARCHAR(20)  NOT NULL,
-    fullName VARCHAR(255) NOT NULL
-);
-
 --comment create book entity
 CREATE SEQUENCE books_id_seq
     START WITH 1
@@ -40,5 +26,6 @@ CREATE TABLE books
     genre_id    BIGINT       NOT NULL,
     description TEXT,
     author      VARCHAR(100) NOT NULL,
+    is_deleted  BOOLEAN            DEFAULT FALSE,
     FOREIGN KEY (genre_id) REFERENCES genres (id)
 );
