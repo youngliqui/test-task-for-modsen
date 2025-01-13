@@ -19,11 +19,14 @@ spring:
     hibernate:
       ddl-auto: none
     show-sql: true
+  kafka:
+    bootstrap-servers: kafka:9092
 springdoc:
   show-actuator: false
   swagger-ui:
     enabled: true
     path: /swagger-ui.html
+
 
 books:
   default-return-days: 5
