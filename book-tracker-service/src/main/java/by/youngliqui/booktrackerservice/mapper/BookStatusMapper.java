@@ -16,6 +16,7 @@ public interface BookStatusMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "borrowedAt", ignore = true)
     @Mapping(target = "returnBy", ignore = true)
+    @Mapping(target = "deleted", ignore = true)
     @Mapping(target = "status", constant = "AVAILABLE")
     BookStatus createBookStatusDtoToBookStatus(CreateBookStatusDto createBookStatusDto);
 

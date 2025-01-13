@@ -9,6 +9,7 @@ import by.youngliqui.bookstorageservice.entity.Genre;
 import by.youngliqui.bookstorageservice.exception.BookAlreadyExistsException;
 import by.youngliqui.bookstorageservice.exception.BookNotFoundException;
 import by.youngliqui.bookstorageservice.exception.GenreNotFoundException;
+import by.youngliqui.bookstorageservice.kafka.BookStorageProducer;
 import by.youngliqui.bookstorageservice.mapper.BookMapper;
 import by.youngliqui.bookstorageservice.repository.BookRepository;
 import by.youngliqui.bookstorageservice.repository.GenreRepository;
@@ -28,6 +29,8 @@ public class BookManagementServiceImpl implements BookManagementService {
 
     private final BookMapper bookMapper;
 
+    private final BookStorageProducer bookStorageProducer;
+
 
     @Override
     public InfoBookDto createBook(CreateBookDto createBookDto) {
@@ -41,9 +44,10 @@ public class BookManagementServiceImpl implements BookManagementService {
         Genre genre = findGenreByName(genreName);
 
         Book book = bookMapper.createBookDtoToBook(createBookDto, genre);
-        bookRepository.save(book);
+        Book createdBook = bookRepository.save(book);
+        bookStorageProducer.sendBookCreated(createdBook.getId());
 
-        return bookMapper.bookToInfoBookDto(book);
+        return bookMapper.bookToInfoBookDto(createdBook);
     }
 
     @Override
@@ -51,6 +55,7 @@ public class BookManagementServiceImpl implements BookManagementService {
         Book deletedBook = findBookById(bookId);
 
         bookRepository.delete(deletedBook);
+        bookStorageProducer.sendBookDeleted(bookId);
     }
 
     @Override

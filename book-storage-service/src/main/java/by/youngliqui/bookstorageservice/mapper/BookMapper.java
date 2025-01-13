@@ -16,10 +16,12 @@ public interface BookMapper {
 
     @Mapping(source = "genre", target = "genre")
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "deleted", ignore = true)
     Book createBookDtoToBook(CreateBookDto createBookDto, Genre genre);
 
     @Mapping(source = "genre", target = "genre")
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "deleted", ignore = true)
     void updateBookFromDto(@MappingTarget Book book, UpdateBookDto updateBookDto, Genre genre);
 
     @BeanMapping(
@@ -28,5 +30,6 @@ public interface BookMapper {
     )
     @Mapping(source = "genre", target = "genre")
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "deleted", ignore = true)
     void patchBookFromDto(@MappingTarget Book book, PatchBookDto patchBookDto, Genre genre);
 }
