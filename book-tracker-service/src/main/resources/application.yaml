@@ -20,7 +20,10 @@ spring:
       ddl-auto: none
     show-sql: true
   kafka:
-    bootstrap-servers: kafka:9092
+    bootstrap-servers: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
+    consumer:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.LongDeserializer
 springdoc:
   show-actuator: false
   swagger-ui:

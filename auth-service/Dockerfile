@@ -1,7 +1,18 @@
-FROM openjdk:21
+FROM gradle:8.9-jdk21 AS build
 
 WORKDIR /app
 
-COPY build/libs/auth-service-0.0.1-SNAPSHOT.jar ./app.jar
+COPY build.gradle settings.gradle ./
+COPY src ./src
 
-CMD ["java","-jar","app.jar"]
+RUN gradle build --no-daemon
+
+FROM openjdk:21-jdk-slim
+
+WORKDIR /app
+
+COPY --from=build /app/build/libs/*.jar app.jar
+
+EXPOSE 8082
+
+ENTRYPOINT ["java", "-jar", "app.jar"]
