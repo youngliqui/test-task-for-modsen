@@ -1,4 +1,4 @@
-package by.youngliqui.authservice.dto.user;
+package by.youngliqui.bookstorageservice.dto.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,9 +10,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class InfoUserDto {
+
     private Long id;
 
     private String username;
 
     private String role;
+
 }
