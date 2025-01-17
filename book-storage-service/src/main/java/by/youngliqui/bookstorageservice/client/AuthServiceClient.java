@@ -1,9 +1,9 @@
 package by.youngliqui.bookstorageservice.client;
 
-import by.youngliqui.bookstorageservice.dto.user.InfoUserDto;
+import by.youngliqui.bookstorageservice.dto.user.RoleUserDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @FeignClient(
         name = "${app.clients.auth-service.name}",
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 )
 public interface AuthServiceClient {
 
-    @GetMapping("/user-info")
-    InfoUserDto getUserInfo(@RequestHeader("Authorization") String token);
+    @GetMapping("/user-role/{token}")
+    RoleUserDto getUserRole(@PathVariable String token);
 
 }

@@ -7,7 +7,6 @@ import by.youngliqui.authservice.dto.user.InfoUserDto;
 import by.youngliqui.authservice.entity.Role;
 import by.youngliqui.authservice.entity.User;
 import by.youngliqui.authservice.service.AuthenticationService;
-import by.youngliqui.authservice.service.JwtService;
 import by.youngliqui.authservice.service.UserAuthenticationService;
 import by.youngliqui.authservice.service.UserManagementService;
 import lombok.RequiredArgsConstructor;

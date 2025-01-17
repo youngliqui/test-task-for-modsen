@@ -2,6 +2,7 @@ package by.youngliqui.authservice.service.impl;
 
 import by.youngliqui.authservice.dto.user.ChangePasswordDto;
 import by.youngliqui.authservice.dto.user.InfoUserDto;
+import by.youngliqui.authservice.dto.user.RoleUserDto;
 import by.youngliqui.authservice.entity.User;
 import by.youngliqui.authservice.exception.IncorrectPasswordException;
 import by.youngliqui.authservice.exception.PasswordMismatchException;
@@ -11,6 +12,7 @@ import by.youngliqui.authservice.repository.UserRepository;
 import by.youngliqui.authservice.service.UserAuthenticationService;
 import by.youngliqui.authservice.service.UserInformationService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -24,6 +26,8 @@ public class UserAuthenticationServiceImpl implements UserAuthenticationService 
     private final UserRepository userRepository;
 
     private final PasswordEncoder passwordEncoder;
+
+    private final JwtService jwtService;
 
     private final UserMapper userMapper;
 
@@ -51,5 +55,25 @@ public class UserAuthenticationServiceImpl implements UserAuthenticationService 
     @Override
     public UserDetailsService userDetailsService() {
         return userInformationService::getByUsername;
+    }
+
+    @Override
+    public RoleUserDto getUserRoleByToken(String token) {
+        String username = jwtService.extractUsername(token);
+        UserDetails userDetails = userDetailsService().loadUserByUsername(username);
+
+        if (!jwtService.isTokenValid(token, userDetails)) {
+            return null;
+        }
+
+        String role = userDetails.getAuthorities().stream()
+                .findFirst()
+                .map(Object::toString)
+                .orElse(null);
+
+        return RoleUserDto.builder()
+                .username(username)
+                .role(role)
+                .build();
     }
 }

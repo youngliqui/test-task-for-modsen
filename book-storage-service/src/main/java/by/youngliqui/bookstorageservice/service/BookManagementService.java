@@ -6,6 +6,7 @@ import by.youngliqui.bookstorageservice.dto.book.PatchBookDto;
 import by.youngliqui.bookstorageservice.dto.book.UpdateBookDto;
 
 public interface BookManagementService {
+
     InfoBookDto createBook(CreateBookDto createBookDto);
 
     void deleteBookById(Long bookId);
@@ -13,4 +14,5 @@ public interface BookManagementService {
     InfoBookDto updateBook(Long bookId, UpdateBookDto updateBookDto);
 
     InfoBookDto patchBook(Long bookId, PatchBookDto patchBookDto);
+
 }

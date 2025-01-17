@@ -3,6 +3,7 @@ package by.youngliqui.authservice.controller;
 import by.youngliqui.authservice.controller.doc.UserControllerDoc;
 import by.youngliqui.authservice.dto.user.ChangePasswordDto;
 import by.youngliqui.authservice.dto.user.InfoUserDto;
+import by.youngliqui.authservice.dto.user.RoleUserDto;
 import by.youngliqui.authservice.dto.user.UpdateUserDto;
 import by.youngliqui.authservice.service.UserAuthenticationService;
 import by.youngliqui.authservice.service.UserInformationService;
@@ -47,5 +48,10 @@ public class UserController implements UserControllerDoc {
     @Override
     public void deleteUserById(Long userId) {
         userManagementService.deleteUserById(userId);
+    }
+
+    @Override
+    public RoleUserDto getUserRole(String token) {
+        return userAuthenticationService.getUserRoleByToken(token);
     }
 }

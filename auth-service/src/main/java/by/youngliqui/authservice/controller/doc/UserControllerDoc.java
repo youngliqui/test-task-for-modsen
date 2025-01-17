@@ -3,6 +3,7 @@ package by.youngliqui.authservice.controller.doc;
 import by.youngliqui.authservice.dto.response.ExceptionResponse;
 import by.youngliqui.authservice.dto.user.ChangePasswordDto;
 import by.youngliqui.authservice.dto.user.InfoUserDto;
+import by.youngliqui.authservice.dto.user.RoleUserDto;
 import by.youngliqui.authservice.dto.user.UpdateUserDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -119,4 +120,14 @@ public interface UserControllerDoc {
             @Parameter(description = "ID пользователя")
             @PathVariable Long userId
     );
+
+    @Operation(summary = "Получение роли и имени пользователя по токену")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Успешно получена информация о пользователе"),
+            @ApiResponse(responseCode = "401", description = "Неавторизованный доступ"),
+            @ApiResponse(responseCode = "403", description = "Доступ запрещен")
+    })
+    @GetMapping("/user-role/{token}")
+    RoleUserDto getUserRole(@PathVariable String token);
+
 }

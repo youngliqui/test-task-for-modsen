@@ -5,7 +5,6 @@ import org.springframework.data.domain.Page;
 
 public interface BookInformationService {
 
-
     Page<InfoBookDto> getAllBooks(Integer page, Integer size);
 
     InfoBookDto getBookById(Long bookId);
