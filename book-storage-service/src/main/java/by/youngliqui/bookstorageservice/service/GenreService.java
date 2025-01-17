@@ -6,9 +6,11 @@ import by.youngliqui.bookstorageservice.dto.genre.InfoGenreDto;
 import java.util.List;
 
 public interface GenreService {
+
     List<InfoGenreDto> findAllGenres();
 
     InfoGenreDto createGenre(CreateGenreDto createGenreDto);
 
     void deleteGenreById(Long genreId);
+
 }

@@ -28,7 +28,7 @@ public interface BookControllerDoc {
                     content = @Content(schema = @Schema(implementation = ExceptionResponse.class)))
     })
     @GetMapping
-    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
     Page<InfoBookDto> getAllBooks(
             @Parameter(description = "Номер страницы", example = "0")
             @RequestParam(defaultValue = "0", required = false, value = "page") Integer page,
@@ -43,7 +43,7 @@ public interface BookControllerDoc {
             @ApiResponse(responseCode = "404", description = "Книга не найдена",
                     content = @Content(schema = @Schema(implementation = ExceptionResponse.class)))
     })
-    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
     @GetMapping("/{bookId}")
     InfoBookDto getBookById(
             @Parameter(description = "ID книги", required = true, example = "1") @PathVariable Long bookId
@@ -56,7 +56,7 @@ public interface BookControllerDoc {
             @ApiResponse(responseCode = "404", description = "Книга не найдена",
                     content = @Content(schema = @Schema(implementation = ExceptionResponse.class)))
     })
-    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
     @GetMapping("/isbn/{isbn}")
     InfoBookDto getBookByISBN(
             @Parameter(description = "ISBN книги", required = true, example = "978-5-06-002611-5")
@@ -72,7 +72,7 @@ public interface BookControllerDoc {
             @ApiResponse(responseCode = "409", description = "Книга уже существует",
                     content = @Content(schema = @Schema(implementation = ExceptionResponse.class)))
     })
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping
     @ResponseStatus(CREATED)
     InfoBookDto createBook(
@@ -87,7 +87,7 @@ public interface BookControllerDoc {
             @ApiResponse(responseCode = "404", description = "Книга не найдена",
                     content = @Content(schema = @Schema(implementation = ExceptionResponse.class)))
     })
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/{bookId}")
     @ResponseStatus(NO_CONTENT)
     void deleteBookById(
@@ -105,7 +105,7 @@ public interface BookControllerDoc {
             @ApiResponse(responseCode = "409", description = "Книга уже существует",
                     content = @Content(schema = @Schema(implementation = ExceptionResponse.class)))
     })
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/{bookId}")
     InfoBookDto fullUpdate(
             @Parameter(description = "ID книги") @PathVariable Long bookId,
@@ -124,7 +124,7 @@ public interface BookControllerDoc {
             @ApiResponse(responseCode = "409", description = "Книга уже существует",
                     content = @Content(schema = @Schema(implementation = ExceptionResponse.class)))
     })
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PatchMapping("/{bookId}")
     InfoBookDto patchUpdateBookDto(
             @Parameter(description = "ID книги") @PathVariable Long bookId,

@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,6 +24,7 @@ public interface GenreControllerDoc {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Успешно получен список жанров")
     })
+    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
     @GetMapping
     List<InfoGenreDto> getAllGenres();
 
@@ -34,6 +36,7 @@ public interface GenreControllerDoc {
             @ApiResponse(responseCode = "409", description = "Жанр уже существует",
                     content = @Content(schema = @Schema(implementation = ExceptionResponse.class)))
     })
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping
     @ResponseStatus(CREATED)
     InfoGenreDto createGenre(
@@ -47,6 +50,7 @@ public interface GenreControllerDoc {
             @ApiResponse(responseCode = "404", description = "Жанр не найден",
                     content = @Content(schema = @Schema(implementation = ExceptionResponse.class)))
     })
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/{genreId}")
     @ResponseStatus(NO_CONTENT)
     void deleteGenreById(

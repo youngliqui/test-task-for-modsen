@@ -1,7 +1,7 @@
 package by.youngliqui.bookstorageservice.filter;
 
 import by.youngliqui.bookstorageservice.client.AuthServiceClient;
-import by.youngliqui.bookstorageservice.dto.user.InfoUserDto;
+import by.youngliqui.bookstorageservice.dto.user.RoleUserDto;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -34,29 +34,43 @@ public class JwtFilter extends OncePerRequestFilter {
             FilterChain filterChain
     ) throws ServletException, IOException {
 
-        String header = request.getHeader(HttpHeaders.AUTHORIZATION);
-        if (header == null || !header.startsWith(BEARER_PREFIX)) {
+        String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
+        if (isInvalidAuthHeader(authHeader)) {
             filterChain.doFilter(request, response);
             return;
         }
 
-        String token = header.substring(BEARER_PREFIX.length());
-        InfoUserDto userInfo = authServiceClient.getUserInfo(token);
+        String token = extractToken(authHeader);
+        RoleUserDto userRoleDto = authServiceClient.getUserRole(token);
 
-        if (userInfo != null) {
-            UserDetails userDetails = new org.springframework.security.core.userdetails.User(
-                    userInfo.getUsername(),
-                    "",
-                    AuthorityUtils.createAuthorityList(userInfo.getRole())
-            );
-
-            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-                    userDetails, null, userDetails.getAuthorities());
-
-            authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+        if (userRoleDto != null) {
+            authenticateUser(userRoleDto, request);
         }
 
         filterChain.doFilter(request, response);
+    }
+
+
+    private boolean isInvalidAuthHeader(String authHeader) {
+        return authHeader == null || !authHeader.startsWith(BEARER_PREFIX);
+    }
+
+    private String extractToken(String authHeader) {
+        return authHeader.substring(BEARER_PREFIX.length());
+    }
+
+    private void authenticateUser(RoleUserDto userRoleDto, HttpServletRequest request) {
+        UserDetails userDetails = new org.springframework.security.core.userdetails.User(
+                userRoleDto.getUsername(),
+                "",
+                AuthorityUtils.createAuthorityList(userRoleDto.getRole())
+        );
+
+        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
+                userDetails, null, userDetails.getAuthorities()
+        );
+
+        authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+        SecurityContextHolder.getContext().setAuthentication(authentication);
     }
 }

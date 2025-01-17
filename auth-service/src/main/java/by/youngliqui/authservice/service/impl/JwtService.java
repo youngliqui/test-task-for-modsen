@@ -1,4 +1,4 @@
-package by.youngliqui.authservice.service;
+package by.youngliqui.authservice.service.impl;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

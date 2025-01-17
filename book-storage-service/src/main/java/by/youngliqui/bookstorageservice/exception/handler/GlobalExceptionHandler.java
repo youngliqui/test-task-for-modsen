@@ -3,8 +3,11 @@ package by.youngliqui.bookstorageservice.exception.handler;
 import by.youngliqui.bookstorageservice.dto.ExceptionResponse;
 import by.youngliqui.bookstorageservice.exception.abstr.ResourceAlreadyExistsException;
 import by.youngliqui.bookstorageservice.exception.abstr.ResourceNotFoundException;
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.MalformedJwtException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -31,6 +34,27 @@ public class GlobalExceptionHandler {
     public ExceptionResponse handleResourceAlreadyExistsException(ResourceAlreadyExistsException e) {
         log.error(e.getMessage(), e);
         return buildExceptionResponse(CONFLICT, e.getMessage());
+    }
+
+    @ExceptionHandler(ExpiredJwtException.class)
+    @ResponseStatus(UNAUTHORIZED)
+    public ExceptionResponse handleExpiredJwt(ExpiredJwtException e) {
+        log.warn("JWT expired: {}", e.getMessage());
+        return buildExceptionResponse(UNAUTHORIZED, "JWT token has expired");
+    }
+
+    @ExceptionHandler(AccessDeniedException.class)
+    @ResponseStatus(FORBIDDEN)
+    public ExceptionResponse handleForbiddenExceptions(AccessDeniedException e) {
+        log.warn("Access denied: {}", e.getMessage());
+        return buildExceptionResponse(FORBIDDEN, "Access denied");
+    }
+
+    @ExceptionHandler(MalformedJwtException.class)
+    @ResponseStatus(BAD_REQUEST)
+    public ExceptionResponse handleMalformedJwt(MalformedJwtException e) {
+        log.warn("Malformed JWT: {}", e.getMessage());
+        return buildExceptionResponse(BAD_REQUEST, "JWT token is malformed");
     }
 
     @ResponseStatus(BAD_REQUEST)
