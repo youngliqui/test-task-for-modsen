@@ -1,4 +1,4 @@
-package by.youngliqui.authservice.config;
+package by.youngliqui.authservice.filter;
 
 import by.youngliqui.authservice.service.UserAuthenticationService;
 import by.youngliqui.authservice.service.impl.JwtService;

@@ -1,5 +1,6 @@
 package by.youngliqui.authservice.config;
 
+import by.youngliqui.authservice.filter.JwtAuthenticationFilter;
 import by.youngliqui.authservice.service.UserAuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
