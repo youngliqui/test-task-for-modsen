@@ -1,4 +1,4 @@
-package by.youngliqui.booktrackerservice.kafka;
+package by.youngliqui.booktrackerservice.kafka.config;
 
 import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.context.annotation.Bean;

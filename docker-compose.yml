@@ -33,39 +33,56 @@ services:
       - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:9092
       - KAFKA_CLUSTERS_0_ZOOKEEPER=zookeeper:2181
 
-  #  auth-service:
-  #    build:
-  #      context: ./auth-service
-  #    ports:
-  #      - "${AUTH_SERVICE_PORT}:8082"
-  #    environment:
-  #      POSTGRES_DB: ${AUTH_DATABASE}
-  #      POSTGRES_USER: ${AUTH_USER}
-  #      POSTGRES_PASSWORD: ${AUTH_PASSWORD}
-  #
-  #  book-storage-service:
-  #    build:
-  #      context: ./book-storage-service
-  #    ports:
-  #      - "${BOOK_STORAGE_SERVICE_PORT}:8081"
-  #    environment:
-  #      POSTGRES_DB: ${BOOK_STORAGE_DATABASE}
-  #      POSTGRES_USER: ${BOOK_STORAGE_USER}
-  #      POSTGRES_PASSWORD: ${BOOK_STORAGE_PASSWORD}
-  #      KAFKA_BOOTSTRAP_SERVERS: kafka:9092
-  #
-  #  book-tracker-service:
-  #    build:
-  #      context: ./book-tracker-service
-  #    ports:
-  #      - "${BOOK_TRACKER_SERVICE_PORT}:8083"
-  #    environment:
-  #      POSTGRES_DB: ${BOOK_TRACKER_DATABASE}
-  #      POSTGRES_USER: ${BOOK_TRACKER_USER}
-  #      POSTGRES_PASSWORD: ${BOOK_TRACKER_PASSWORD}
-  #      KAFKA_BOOTSTRAP_SERVERS: kafka:9092
 
-  postgres-auth:
+  auth-service:
+    restart: on-failure
+    build:
+      context: ./auth-service
+      dockerfile: Dockerfile
+    ports:
+      - ${AUTH_SERVICE_PORT}:${AUTH_SERVICE_PORT}
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://users_db:5432/${AUTH_DATABASE}
+      SPRING_DATASOURCE_USERNAME: ${AUTH_USER}
+      SPRING_DATASOURCE_PASSWORD: ${AUTH_PASSWORD}
+    depends_on:
+      - postgres-auth-service
+
+  book-storage-service:
+    restart: on-failure
+    build:
+      context: ./book-storage-service
+      dockerfile: Dockerfile
+    ports:
+      - ${BOOK_STORAGE_SERVICE_PORT}:${BOOK_STORAGE_SERVICE_PORT}
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://book_storage_db:5432/${BOOK_STORAGE_DATABASE}
+      SPRING_DATASOURCE_USERNAME: ${BOOK_STORAGE_USER}
+      SPRING_DATASOURCE_PASSWORD: ${BOOK_STORAGE_PASSWORD}
+      KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+      APP_CLIENTS_AUTH-SERVICE_URL: http://auth-service:8082
+    depends_on:
+      - postgres-book-storage-service
+      - kafka
+
+  book-tracker-service:
+    restart: on-failure
+    build:
+      context: ./book-tracker-service
+      dockerfile: Dockerfile
+    ports:
+      - ${BOOK_TRACKER_SERVICE_PORT}:${BOOK_TRACKER_SERVICE_PORT}
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://book_tracker_db:5432/${BOOK_TRACKER_DATABASE}
+      SPRING_DATASOURCE_USERNAME: ${BOOK_TRACKER_USER}
+      SPRING_DATASOURCE_PASSWORD: ${BOOK_TRACKER_PASSWORD}
+      KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+    depends_on:
+      - postgres-book-tracker-service
+      - kafka
+
+
+  postgres-auth-service:
     container_name: users_db
     image: postgres:latest
     restart: always
@@ -76,7 +93,7 @@ services:
     ports:
       - ${POSTGRES_LOCAL_PORT_AUTH}:5432
 
-  postgres-book-storage:
+  postgres-book-storage-service:
     container_name: book_storage_db
     image: postgres:latest
     restart: always
@@ -87,7 +104,7 @@ services:
     ports:
       - ${POSTGRES_LOCAL_PORT_STORAGE}:5432
 
-  postgres-book-tracker:
+  postgres-book-tracker-service:
     container_name: book_tracker_db
     image: postgres:latest
     restart: always
