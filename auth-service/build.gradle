@@ -8,20 +8,14 @@ plugins {
 group = 'by.youngliqui'
 version = '0.0.1-SNAPSHOT'
 
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
-    }
-}
-
-configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
-    }
-}
-
 repositories {
     mavenCentral()
+}
+
+ext {
+    set('mapstructVersion', '1.6.2')
+    set('springdocVersion', '2.7.0')
+    set('jwtwebtokenVersion', '0.12.6')
 }
 
 dependencies {
@@ -36,7 +30,7 @@ dependencies {
     /**
      * Doc
      */
-    implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:2.7.0"
+    implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${springdocVersion}"
 
     /**
      * Database
@@ -53,13 +47,13 @@ dependencies {
     /**
      * JWT
      */
-    implementation 'io.jsonwebtoken:jjwt:0.12.6'
+    implementation "io.jsonwebtoken:jjwt:${jwtwebtokenVersion}"
 
     /**
      * MapStruct
      */
-    implementation 'org.mapstruct:mapstruct:1.6.2'
-    annotationProcessor 'org.mapstruct:mapstruct-processor:1.6.2'
+    implementation "org.mapstruct:mapstruct:${mapstructVersion}"
+    annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
 
     /**
      * Test
@@ -67,6 +61,18 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
 }
 
 tasks.named('test') {
