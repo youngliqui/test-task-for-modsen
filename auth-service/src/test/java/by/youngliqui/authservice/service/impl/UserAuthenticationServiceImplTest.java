@@ -186,4 +186,23 @@ class UserAuthenticationServiceImplTest {
         verify(jwtService).extractUsername(token);
         verify(jwtService).isTokenValid(eq(token), any(UserDetails.class));
     }
+
+    @Test
+    void testGetUserRoleByToken_InvalidToken() {
+        // Given
+        String invalidToken = "invalidToken";
+
+        // When
+        when(jwtService.extractUsername(invalidToken)).thenReturn(USERNAME);
+        when(userInformationService.getByUsername(USERNAME)).thenReturn(user);
+        when(jwtService.isTokenValid(eq(invalidToken), any(UserDetails.class))).thenReturn(false);
+
+        var result = userAuthenticationService.getUserRoleByToken(invalidToken);
+
+        // Then
+        assertThat(result).isNull();
+
+        verify(jwtService).extractUsername(invalidToken);
+        verify(jwtService).isTokenValid(eq(invalidToken), any(UserDetails.class));
+    }
 }

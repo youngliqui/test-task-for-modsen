@@ -87,6 +87,20 @@ class JwtServiceTest {
     }
 
     @Test
+    void testIsTokenValid_InvalidUsername() {
+        // Given
+        String token = jwtService.generateToken(userDetails);
+
+        // When
+        when(userDetails.getUsername()).thenReturn("different_user");
+
+        boolean isValid = jwtService.isTokenValid(token, userDetails);
+
+        // Then
+        assertThat(isValid).isFalse();
+    }
+
+    @Test
     void testIsTokenExpired() throws InterruptedException {
         String token = jwtService.generateToken(userDetails);
         Thread.sleep(5000);
