@@ -16,6 +16,7 @@ repositories {
 ext {
     set('mapstructVersion', '1.6.2')
     set('springdocVersion', '2.7.0')
+    set('assertjVersion', '3.27.2')
 }
 
 dependencies {
@@ -61,7 +62,11 @@ dependencies {
      * Test
      */
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    testImplementation 'org.mockito:mockito-core'
+    testImplementation 'org.mockito:mockito-junit-jupiter'
+    testImplementation "org.assertj:assertj-core:${assertjVersion}"
 }
 
 java {
