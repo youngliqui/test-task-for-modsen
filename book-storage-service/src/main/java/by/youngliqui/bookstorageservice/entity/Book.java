@@ -1,17 +1,19 @@
 package by.youngliqui.bookstorageservice.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.SQLRestriction;
 
+@Builder
 @Getter
 @Setter
 @Entity
 @Table(name = "books")
 @SQLDelete(sql = "UPDATE books SET is_deleted = true WHERE id = ?")
 @SQLRestriction("is_deleted = false")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Book {
 
     @Id
@@ -32,6 +34,7 @@ public class Book {
 
     private String author;
 
+    @Builder.Default
     private boolean isDeleted = false;
 
 }

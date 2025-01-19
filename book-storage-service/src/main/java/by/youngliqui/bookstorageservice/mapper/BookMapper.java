@@ -16,7 +16,6 @@ public interface BookMapper {
 
     @Mapping(source = "genre", target = "genre")
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "deleted", ignore = true)
     Book createBookDtoToBook(CreateBookDto createBookDto, Genre genre);
 
     @Mapping(source = "genre", target = "genre")
