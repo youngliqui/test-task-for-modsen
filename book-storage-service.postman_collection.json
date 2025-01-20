@@ -58,7 +58,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTczNzM3NjU4NCwiZXhwIjoxNzM3Mzc3Mzg0fQ.bHwt39yBIYyG-6eJ3ovsG6KNcFg3l3PV0M8bJuEknPc",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTczNzM3OTk0MSwiZXhwIjoxNzM3MzgwNzQxfQ.4um_9dio0ThFMMsUJqTu1m0EWGUia97Urb27Da8VuUs",
 									"type": "string"
 								}
 							]
@@ -81,39 +81,6 @@
 						}
 					},
 					"response": []
-				},
-				{
-					"name": "delete genre",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTczNzM3NzY4OCwiZXhwIjoxNzM3Mzc4NDg4fQ.0t-4WN5nG7Hqu2TLm-xI6cLrgUzBPE0YzcYMp0mlhx4",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8081/api/v1/books/genres/5",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8081",
-							"path": [
-								"api",
-								"v1",
-								"books",
-								"genres",
-								"5"
-							]
-						}
-					},
-					"response": []
 				}
 			]
 		},
@@ -128,7 +95,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTczNzM3NzY4OCwiZXhwIjoxNzM3Mzc4NDg4fQ.0t-4WN5nG7Hqu2TLm-xI6cLrgUzBPE0YzcYMp0mlhx4",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTczNzM3OTk0MSwiZXhwIjoxNzM3MzgwNzQxfQ.4um_9dio0ThFMMsUJqTu1m0EWGUia97Urb27Da8VuUs",
 									"type": "string"
 								}
 							]
@@ -240,7 +207,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTczNzIzOTk4OCwiZXhwIjoxNzM3MjQwNzg4fQ.Nhi269epeG9fPnR_5lCrf3FKWj5CMl872T77VxPc0a8",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTczNzM3OTk0MSwiZXhwIjoxNzM3MzgwNzQxfQ.4um_9dio0ThFMMsUJqTu1m0EWGUia97Urb27Da8VuUs",
 									"type": "string"
 								}
 							]

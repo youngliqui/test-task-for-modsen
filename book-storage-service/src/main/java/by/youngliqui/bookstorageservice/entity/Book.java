@@ -27,7 +27,7 @@ public class Book {
     private String title;
 
     @ManyToOne
-    @JoinColumn(name = "genre_id", nullable = false)
+    @JoinColumn(name = "genre_id")
     private Genre genre;
 
     private String description;
